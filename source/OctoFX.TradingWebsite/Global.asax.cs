@@ -18,7 +18,7 @@ namespace OctoFX.TradingWebsite
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterModule(new AutofacWebTypesModule());
-            builder.RegisterModule(new PersistenceModule());
+//            builder.RegisterModule(new PersistenceModule());
             builder.RegisterFilterProvider();
 
             var container = builder.Build();

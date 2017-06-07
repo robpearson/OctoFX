@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using NHibernate;
 using OctoFX.Core.Model;
 
@@ -6,17 +7,12 @@ namespace OctoFX.TradingWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ISession session;
-
-        public HomeController(ISession session)
-        {
-            this.session = session;
-        }
-
         public ActionResult Index()
         {
-            var rates = session.QueryOver<ExchangeRate>()
-                .List();
+            var rate1 = new ExchangeRate(new CurrencyPair(Currency.Aud, Currency.Usd), 0.9301M);
+            var rate2 = new ExchangeRate(new CurrencyPair(Currency.Gbp, Currency.Usd), 2.1001M);
+
+            var rates = new List<ExchangeRate> {rate1, rate2};
 
             return View(rates);
         }
